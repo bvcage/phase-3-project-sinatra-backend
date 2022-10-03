@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2022_10_03_153436) do
     t.integer "year"
     t.string "plot"
     t.string "image_url"
+    t.string "imdb_id"
   end
 
 end
