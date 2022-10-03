@@ -26,6 +26,33 @@ IMDb_ID_LIST = [
    "tt0092312",   # 21 Jump Street
 ]
 
+puts "🌱 Seeding customers..."
+
+CUSTOMERS = [
+   {first_name: "Bailey", last_name: "Cage"},
+   {first_name: "Ben", last_name: "Erkhart"},
+   {first_name: "Dylan", last_name: "Carver"},
+   {first_name: "William", last_name: "Jordan"},
+]
+CUSTOMERS.each do |customer|
+   Customer.create_or_find_by(first_name: customer[:first_name], last_name: customer[:last_name]) do |customer|
+      customer.phone_number = Faker::PhoneNumber.cell_phone
+      customer.email = Faker::Internet.email(name: "#{customer[:first_name]}")
+   end
+end
+
+puts "🌱 Seeding rentals..."
+
+10.times do
+   Rental.create({
+      checkout_date: Faker::Date.backward(days: 14),
+      due_date: Faker::Date.forward(days: 7),
+      price: rand(10..20),
+      movie_id: rand(1..IMDb_ID_LIST.length),
+      customer_id: rand(1..CUSTOMERS.length)
+   })
+end
+
 IMDb_ID_LIST.each do |imdb_id|
    api = JSON.parse(RestClient.get "#{OMDb_URL}&i=#{imdb_id}")
    Movie.find_or_create_by(imdb_id: imdb_id) do |movie|
