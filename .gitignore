@@ -16,3 +16,8 @@
 
 # Canvas-specific .results.json
 .results.json
+
+# Keys file
+keys.rb
+
+.DS_Store
