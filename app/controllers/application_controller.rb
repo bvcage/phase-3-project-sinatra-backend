@@ -14,6 +14,10 @@ class ApplicationController < Sinatra::Base
     Customer.all.to_json
   end
 
+  get "/customers/new" do
+    Customer.create().to_json
+  end
+
   get "/customers/:id" do
     id = params[:id]
     Customer.find(id).to_json
@@ -53,15 +57,15 @@ class ApplicationController < Sinatra::Base
     Rental.all.to_json
   end
 
+  # create rental without data
+  get "/rentals/new" do
+    Rental.create().to_json
+  end
+
   # read 1 rental
   get "/rentals/:id" do
     id = params[:id]
     Rental.find(id).to_json
-  end
-
-  # create rental without data
-  get "/rentals/new" do
-    { message: "make new rental without data" }.to_json
   end
 
   # create rental with data
