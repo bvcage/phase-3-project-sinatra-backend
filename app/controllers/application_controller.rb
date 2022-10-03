@@ -41,19 +41,6 @@ class ApplicationController < Sinatra::Base
     { message: "delete customer" }.to_json
   end
 
-  ##########
-  # MOVIES #
-  ##########
-
-  get "/movies" do
-    Movie.all.to_json
-  end
-
-  get "/movies/:id" do
-    id = params[:id]
-    Movie.find(id).to_json
-  end
-
   ###########
   # RENTALS #
   ###########
