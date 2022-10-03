@@ -3,12 +3,13 @@ class MoviesController < ApplicationController
    # returns all movies
    get "/movies" do
       movies = Movie.all
-      # optional query parameters
+      # iterate thru optional query parameters
       if params.length > 0
          params.each do |var, val|
             movies = movies.search(var, val)
          end
       end
+      # return
       { data: movies, status: 200 }.to_json
    end
   
