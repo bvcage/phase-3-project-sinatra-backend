@@ -31,6 +31,12 @@ class ApplicationController < Sinatra::Base
     customer.to_json
   end
 
+  post "/customers" do
+    info = JSON.parse(request.body.read)
+    customer = Customer.create_or_find_by(info)
+    customer.to_json
+  end
+
   delete "/customers/:id/delete" do
     { message: "delete customer" }.to_json
   end
@@ -70,7 +76,10 @@ class ApplicationController < Sinatra::Base
 
   # create rental with data
   post "/rentals" do
-    { message: "make new rental with data" }.to_json
+    puts 'hi'
+    info = JSON.parse(request.body.read)
+    rental = Rental.create_or_find_by(info)
+    rental.to_json
   end
   
   # update rental
