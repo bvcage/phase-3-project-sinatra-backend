@@ -2,6 +2,12 @@ class CustomersController < ApplicationController
 
    get "/customers" do
       customers = Customer.all
+      # optional query parameters
+      if params.length > 0
+         params.each do |var, val|
+            customers = customers.search(var, val)
+         end
+      end
       { data: customers, status: 200 }.to_json
    end
 
