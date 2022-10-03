@@ -20,7 +20,11 @@ class ApplicationController < Sinatra::Base
   end
 
   patch "/customers/:id/edit" do
-    { message: "edit customer" }.to_json
+    id = params[:id]
+    customer = Customer.find(id)
+    edits = JSON.parse(request.body.read)
+    customer.update(edits)
+    customer.to_json
   end
 
   delete "/customers/:id/delete" do
@@ -67,7 +71,11 @@ class ApplicationController < Sinatra::Base
   
   # update rental
   patch "/rentals/:id/edit" do
-    { message: "edit rental" }.to_json
+    id = params[:id]
+    rental = Rental.find(id)
+    edits = JSON.parse(request.body.read)
+    rental.update(edits)
+    rental.to_json
   end
 
   # delete rental
