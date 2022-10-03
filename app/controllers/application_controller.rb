@@ -76,9 +76,10 @@ class ApplicationController < Sinatra::Base
 
   # create rental with data
   post "/rentals" do
-    puts 'hi'
     info = JSON.parse(request.body.read)
     rental = Rental.create_or_find_by(info)
+    if rental.checkout_date == nil then rental.update(checkout_date: Date.today) end
+    if rental.due_date == nil then rental.update(due_date: Date.today + 14) end
     rental.to_json
   end
   
