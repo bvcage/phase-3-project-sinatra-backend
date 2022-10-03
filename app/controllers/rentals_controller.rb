@@ -2,18 +2,21 @@ class RentalsController < ApplicationController
 
    # read all rentals
    get "/rentals" do
-      Rental.all.to_json
+      rentals = Rental.all
+      { data: rentals, status: 200 }.to_json
    end
 
    # create rental without data
    get "/rentals/new" do
-      Rental.create().to_json
+      rental = Rental.create()
+      { data: rental, status: 201 }.to_json
    end
 
    # read 1 rental
    get "/rentals/:id" do
       id = params[:id]
-      Rental.find(id).to_json
+      rental = Rental.find(id)
+      { data: rental, status: 200 }.to_json
    end
 
    # create rental with data
@@ -22,7 +25,7 @@ class RentalsController < ApplicationController
       rental = Rental.create_or_find_by(info)
       if rental.checkout_date == nil then rental.update(checkout_date: Date.today) end
       if rental.due_date == nil then rental.update(due_date: Date.today + 14) end
-      rental.to_json
+      { data: rental, status: 201 }.to_json
    end
 
    # update rental
@@ -31,12 +34,14 @@ class RentalsController < ApplicationController
       rental = Rental.find(id)
       edits = JSON.parse(request.body.read)
       rental.update(edits)
-      rental.to_json
+      { data: rental, status: 202 }.to_json
    end
 
    # delete rental
    delete "/rentals/:id/delete" do
-      { message: "delete rental" }.to_json
+      id = params[:id]
+      Rental.find(id).destroy
+      { data: nil, status: 204 }.to_json
    end
 
 end

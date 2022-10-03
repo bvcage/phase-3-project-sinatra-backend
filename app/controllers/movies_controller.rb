@@ -2,13 +2,15 @@ class MoviesController < ApplicationController
 
    # returns all movies
    get "/movies" do
-      Movie.all.to_json
+      movies = Movie.all
+      { data: movies, status: 200 }
    end
   
    # returns 1 movie
    get "/movies/:id" do
       id = params[:id]
-      Movie.find(id).to_json
+      movie = Movie.find(id)
+      { data: movie, status: 200 }
    end
 
 end
