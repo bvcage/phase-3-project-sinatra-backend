@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
   #############
 
   get "/customers" do
-    { message: "list all customers" }.to_json
+    Customer.all.to_json
   end
 
   get "/customers/:id" do
@@ -31,7 +31,7 @@ class ApplicationController < Sinatra::Base
   ##########
 
   get "/movies" do
-    { message: "list all movies" }.to_json
+    Movie.all.to_json
   end
 
   get "/movies/:id" do
@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
 
   # read all rentals
   get "/rentals" do
-    { message: "list all rentals" }.to_json
+    Rental.all.to_json
   end
 
   # read 1 rental
