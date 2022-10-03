@@ -15,3 +15,4 @@ use Rack::JSONBodyParser
 run ApplicationController
 use CustomersController
 use MoviesController
+use RentalsController
