@@ -15,7 +15,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/customers/:id" do
-    { message: "list 1 customer" }.to_json
+    id = params[:id]
+    Customer.find(id).to_json
   end
 
   patch "/customers/:id/edit" do
@@ -35,7 +36,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/movies/:id" do
-    { message: "list 1 movie" }.to_json
+    id = params[:id]
+    Movie.find(id).to_json
   end
 
   ###########
@@ -49,7 +51,8 @@ class ApplicationController < Sinatra::Base
 
   # read 1 rental
   get "/rentals/:id" do
-    { message: "list 1 rental" }.to_json
+    id = params[:id]
+    Rental.find(id).to_json
   end
 
   # create rental without data
