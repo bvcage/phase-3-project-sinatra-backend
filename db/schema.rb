@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_153436) do
+ActiveRecord::Schema.define(version: 2022_10_03_180010) do
+
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "email"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -18,6 +25,16 @@ ActiveRecord::Schema.define(version: 2022_10_03_153436) do
     t.string "plot"
     t.string "image_url"
     t.string "imdb_id"
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.datetime "checkout_date"
+    t.datetime "due_date"
+    t.integer "price"
+    t.integer "movie_id"
+    t.integer "customer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
