@@ -3,6 +3,12 @@ class RentalsController < ApplicationController
    # read all rentals
    get "/rentals" do
       rentals = Rental.all
+      # optional query parameters
+      if params.length > 0
+         params.each do |var, val|
+            rentals = rentals.search(var, val)
+         end
+      end
       { data: rentals, status: 200 }.to_json
    end
 
