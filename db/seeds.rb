@@ -26,6 +26,17 @@ IMDb_ID_LIST = [
    "tt0092312",   # 21 Jump Street
 ]
 
+IMDb_ID_LIST.each do |imdb_id|
+   api = JSON.parse(RestClient.get "#{OMDb_URL}&i=#{imdb_id}")
+   Movie.find_or_create_by(imdb_id: imdb_id) do |movie|
+      movie.title = api["Title"]
+      movie.genre = api["Genre"]
+      movie.year = api["Year"]
+      movie.plot = api["Plot"]
+      movie.image_url = api["Poster"]
+   end
+end
+
 puts "🌱 Seeding customers..."
 
 CUSTOMERS = [
@@ -51,16 +62,6 @@ puts "🌱 Seeding rentals..."
       movie_id: rand(1..IMDb_ID_LIST.length),
       customer_id: rand(1..CUSTOMERS.length)
    })
-end
-
-IMDb_ID_LIST.each do |imdb_id|
-   api = JSON.parse(RestClient.get "#{OMDb_URL}&i=#{imdb_id}")
-   Movie.find_or_create_by(imdb_id: imdb_id) do |movie|
-      movie.title = api["Title"]
-      movie.year = api["Year"]
-      movie.plot = api["Plot"]
-      movie.image_url = api["Poster"]
-   end
 end
 
 puts "✅ Done seeding!"
