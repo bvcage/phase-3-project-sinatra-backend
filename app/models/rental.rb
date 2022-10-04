@@ -1,8 +1,9 @@
+require_relative "../modules/searchable.rb"
+
 class Rental < ActiveRecord::Base
+    extend Searchable
+
     belongs_to :customer
     belongs_to :movie
 
-    def self.search (data, value)
-        where("#{data} LIKE ?", "%#{value}%")
-    end
 end
