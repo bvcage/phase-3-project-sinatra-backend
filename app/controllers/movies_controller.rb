@@ -12,7 +12,13 @@ class MoviesController < ApplicationController
       # return
       { data: movies, status: 200 }.to_json
    end
-  
+
+   # returns list of unique genres
+   get "/movies/genres" do
+      genres = Movie.list_genres
+      { data: genres, status: 200 }.to_json
+   end
+   
    # returns 1 movie
    get "/movies/:id" do
       id = params[:id]
