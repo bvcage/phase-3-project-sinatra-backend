@@ -33,7 +33,9 @@ class CustomersController < ApplicationController
 
    post "/customers" do
       info = JSON.parse(request.body.read)
-      customer = Customer.create_or_find_by(info)
+      customer = Customer.create_or_find_by(info) do |customer|
+         customer.join_date = Date.today
+      end
       { data: customer, status: 201 }.to_json
    end
 
