@@ -49,6 +49,7 @@ CUSTOMERS.each do |customer|
    Customer.create_or_find_by(first_name: customer[:first_name], last_name: customer[:last_name]) do |customer|
       customer.phone_number = Faker::PhoneNumber.cell_phone
       customer.email = Faker::Internet.email(name: "#{customer[:first_name]}")
+      customer.join_date = Faker::Date.between(from: '2018-01-01', to: Date.today)
    end
 end
 
