@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
 
-   # read all rentals
+   # return all rentals
    get "/rentals" do
       rentals = Rental.all
       # iterate thru optional query parameters
@@ -8,6 +8,14 @@ class RentalsController < ApplicationController
          params.each do |var, val|
             rentals = rentals.search(var, val)
          end
+      end
+      # return movie & customer info also
+      rentals = rentals.map do |rental|
+         {
+            rental: rental,
+            movie: rental.movie,
+            customer: rental.customer
+         }
       end
       # return
       { data: rentals, status: 200 }.to_json
@@ -19,10 +27,15 @@ class RentalsController < ApplicationController
       { data: rental, status: 201 }.to_json
    end
 
-   # read 1 rental
+   # return 1 rental
    get "/rentals/:id" do
       id = params[:id]
       rental = Rental.find(id)
+      rental = {
+         rental: rental,
+         movie: rental.movie,
+         customer: rental.customer
+      }
       { data: rental, status: 200 }.to_json
    end
 
