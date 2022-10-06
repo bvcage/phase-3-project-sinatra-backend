@@ -27,6 +27,26 @@ class RentalsController < ApplicationController
       { data: rental, status: 201 }.to_json
    end
 
+   get "/rentals/out" do
+      rentals = Rental.all.where(checkin_date: nil)
+      # iterate thru optional query parameters
+      if params.length > 0
+         params.each do |var, val|
+            rentals = rentals.search(var, val)
+         end
+      end
+      # return movie & customer info also
+      rentals = rentals.map do |rental|
+         {
+            rental: rental,
+            movie: rental.movie,
+            customer: rental.customer
+         }
+      end
+      # return
+      { data: rentals, status: 200 }.to_json
+   end
+
    # return 1 rental
    get "/rentals/:id" do
       id = params[:id]
