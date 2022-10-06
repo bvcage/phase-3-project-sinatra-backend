@@ -4,7 +4,9 @@ class Movie < ActiveRecord::Base
     extend Searchable
 
     has_many :rentals
+    has_many :reviews
     has_many :customers, through: :rentals
+    has_many :customers, through: :reviews
 
     def self.list_genres
         genre_list = Movie.all.pluck(:genre).uniq

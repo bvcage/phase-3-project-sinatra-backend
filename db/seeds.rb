@@ -65,4 +65,15 @@ puts "🌱 Seeding rentals..."
    })
 end
 
+puts "🌱 Seeding reviews..."
+
+10.times do
+   Review.create({
+      stars: rand(1..5),
+      comment: Faker::Quote.yoda,
+      customer_id: rand(1..CUSTOMERS.length),
+      movie_id: rand(1..IMDb_ID_LIST.length)
+   })
+end
+
 puts "✅ Done seeding!"
