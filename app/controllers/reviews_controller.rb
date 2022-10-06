@@ -30,4 +30,10 @@ class ReviewsController < ApplicationController
       { data: reviews, status: 200 }.to_json
    end
 
+   # create new review without data
+   get "/reviews/new" do
+      review = Review.create()
+      { data: review, status: 201 }.to_json
+   end
+
 end
