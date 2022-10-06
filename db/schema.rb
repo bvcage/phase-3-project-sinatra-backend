@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_150857) do
+ActiveRecord::Schema.define(version: 2022_10_06_170038) do
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2022_10_05_150857) do
     t.datetime "checkout_date"
     t.datetime "due_date"
     t.integer "price"
+    t.integer "movie_id"
+    t.integer "customer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "review_id"
+    t.datetime "checkin_date"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "stars"
+    t.string "comment"
     t.integer "movie_id"
     t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
