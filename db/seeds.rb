@@ -53,10 +53,10 @@ CUSTOMERS = [
    {first_name: "Eric", last_name: "Jubera"},
    {first_name: "Greem", last_name: "Lee"},
    {first_name: "Jasmin", last_name: "Ellis"},
-   {first_name: "Jordan", last_name: "NLN"},
+   {first_name: "Jordan", last_name: "Jennings"},
    {first_name: "Kenneth", last_name: "Latour"},
    {first_name: "Lucy", last_name: "Tittle"},
-   {first_name: "Roy", last_name: "NLN"},
+   {first_name: "Roy", last_name: "Lee"},
    {first_name: "Tim", last_name: "Montgomery"}
 ]
 CUSTOMERS.each do |customer|
