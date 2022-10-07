@@ -24,6 +24,9 @@ IMDb_ID_LIST = [
    "tt0099785",   # Home Alone
    "tt0109686",   # Dumb and Dumber
    "tt0092312",   # 21 Jump Street
+   "tt0109830",   # Forest Gump
+   "tt0256415",   # Sweet Home Alabama
+   "tt3521164",   # Moana
 ]
 
 IMDb_ID_LIST.each do |imdb_id|
@@ -53,6 +56,7 @@ CUSTOMERS = [
    {first_name: "Eric", last_name: "Jubera"},
    {first_name: "Greem", last_name: "Lee"},
    {first_name: "Jasmin", last_name: "Ellis"},
+   {first_name: "Jeremey", last_name: "Hanson"},
    {first_name: "Jordan", last_name: "Jennings"},
    {first_name: "Kenneth", last_name: "Latour"},
    {first_name: "Lucy", last_name: "Tittle"},
