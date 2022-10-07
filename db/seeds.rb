@@ -44,6 +44,20 @@ CUSTOMERS = [
    {first_name: "Ben", last_name: "Erkhart"},
    {first_name: "Dylan", last_name: "Carver"},
    {first_name: "William", last_name: "Jordan"},
+   {first_name: "Andy", last_name: "Dziabo"},
+   {first_name: "Ben", last_name: "Kurose"},
+   {first_name: "Caleb", last_name: "Summeralls"},
+   {first_name: "Casey", last_name: "Ramirez"},
+   {first_name: "Chris", last_name: "Witte"},
+   {first_name: "Danny", last_name: "Arisa"},
+   {first_name: "Eric", last_name: "Jubera"},
+   {first_name: "Greem", last_name: "Lee"},
+   {first_name: "Jasmin", last_name: "Ellis"},
+   {first_name: "Jordan", last_name: "NLN"},
+   {first_name: "Kenneth", last_name: "Latour"},
+   {first_name: "Lucy", last_name: "Tittle"},
+   {first_name: "Roy", last_name: "NLN"},
+   {first_name: "Tim", last_name: "Montgomery"}
 ]
 CUSTOMERS.each do |customer|
    Customer.create_or_find_by(first_name: customer[:first_name], last_name: customer[:last_name]) do |customer|
@@ -55,7 +69,7 @@ end
 
 puts "🌱 Seeding rentals..."
 
-10.times do
+50.times do
    Rental.create({
       checkout_date: Faker::Date.backward(days: 14),
       due_date: Faker::Date.forward(days: 7),
