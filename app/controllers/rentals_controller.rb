@@ -21,11 +21,13 @@ class RentalsController < ApplicationController
       { data: rentals, status: 200 }.to_json
    end
 
+
    # create rental without data
    get "/rentals/new" do
       rental = Rental.create()
       { data: rental, status: 201 }.to_json
    end
+
 
    # return rentals still out
    get "/rentals/out" do
@@ -48,6 +50,7 @@ class RentalsController < ApplicationController
       { data: rentals, status: 200 }.to_json
    end
 
+
    # return 1 rental
    get "/rentals/:id" do
       id = params[:id]
@@ -60,6 +63,7 @@ class RentalsController < ApplicationController
       { data: rental, status: 200 }.to_json
    end
 
+
    # create rental with data
    post "/rentals" do
       info = JSON.parse(request.body.read)
@@ -68,6 +72,7 @@ class RentalsController < ApplicationController
       if rental.due_date == nil then rental.update(due_date: Date.today + 14) end
       { data: rental, status: 201 }.to_json
    end
+
 
    # update rental
    patch "/rentals/:id/edit" do
@@ -78,6 +83,7 @@ class RentalsController < ApplicationController
       { data: rental, status: 202 }.to_json
    end
 
+   
    # delete rental
    delete "/rentals/:id/delete" do
       id = params[:id]
