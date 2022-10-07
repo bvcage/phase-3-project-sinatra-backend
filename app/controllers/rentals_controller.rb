@@ -27,6 +27,7 @@ class RentalsController < ApplicationController
       { data: rental, status: 201 }.to_json
    end
 
+   # return rentals still out
    get "/rentals/out" do
       rentals = Rental.all.where(checkin_date: nil)
       # iterate thru optional query parameters
