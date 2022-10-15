@@ -37,6 +37,7 @@ IMDb_ID_LIST.each do |imdb_id|
       movie.year = api["Year"]
       movie.plot = api["Plot"]
       movie.image_url = api["Poster"]
+      movie.inventory = rand(1..5)
    end
 end
 
@@ -73,7 +74,7 @@ end
 
 puts "🌱 Seeding rentals..."
 
-50.times do
+20.times do
    Rental.create({
       checkout_date: Faker::Date.backward(days: 14),
       due_date: Faker::Date.forward(days: 7),
@@ -85,7 +86,7 @@ end
 
 puts "🌱 Seeding reviews..."
 
-10.times do
+100.times do
    Review.create({
       stars: rand(1..5),
       comment: Faker::Quote.yoda,

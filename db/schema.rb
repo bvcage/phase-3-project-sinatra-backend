@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_06_170038) do
+ActiveRecord::Schema.define(version: 2022_10_14_232046) do
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_10_06_170038) do
     t.string "plot"
     t.string "image_url"
     t.string "imdb_id"
+    t.integer "inventory"
   end
 
   create_table "rentals", force: :cascade do |t|
