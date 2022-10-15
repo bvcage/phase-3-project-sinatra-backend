@@ -8,6 +8,10 @@ class Movie < ActiveRecord::Base
     has_many :customers, through: :rentals
     has_many :customers, through: :reviews
 
+    def number_rentals_out
+        self.rentals.where(checkin_date: nil)
+    end
+
     def self.list_genres
         genre_list = Movie.all.pluck(:genre).uniq
         genre_list = genre_list.map do |entry|

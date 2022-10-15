@@ -10,7 +10,8 @@ class MoviesController < ApplicationController
          end
       end
       # return
-      { data: movies, status: 200 }.to_json
+      status :ok
+      movies.to_json(include: :number_rentals_out)
    end
 
    # returns list of unique genres
